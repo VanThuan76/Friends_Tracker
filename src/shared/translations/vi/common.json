@@ -1,0 +1,18 @@
+{
+  "appName": {
+    "full": "React Native FriendsTracker",
+    "initials": "RNB"
+  },
+  "menu": {
+    "home": "Trang chủ",
+    "member": "Thành viên",
+    "zone": "Tạo Zone",
+    "profile": "Cá nhân",
+    "search_address": "Tìm kiếm địa điểm"
+  },
+  "yes": "Có",
+  "no": "Không",
+  "average": "Trung bình",
+  "high": "Cao",
+  "low": "Thấp"
+}

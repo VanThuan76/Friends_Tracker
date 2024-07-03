@@ -1,0 +1,18 @@
+{
+  "appName": {
+    "full": "React Native FriendsTracker",
+    "initials": "RNB"
+  },
+  "menu": {
+    "home": "Home",
+    "member": "Members",
+    "zone": "Create Zone",
+    "profile": "Profile",
+    "search_address": "Search Address"
+  },
+  "yes": "Yes",
+  "no": "No",
+  "average": "Average",
+  "high": "High",
+  "low": "Low"
+}

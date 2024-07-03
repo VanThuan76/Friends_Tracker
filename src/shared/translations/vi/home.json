@@ -1,0 +1,12 @@
+{
+    "search_placeholder_header": "Tìm kiếm địa điểm...",
+    "extend_title_history": "Lịch sử",
+    "extend_title_drive": "Lái xe",
+    "extend_title_share": "Chia sẻ",
+    "change_map_module": {
+        "type_map": "Loại bản đồ",
+        "is_traffic": "Hiển thị lưu lượng giao thông",
+        "quatity_map": "Chất lượng bản đồ",
+        "save_settings": "Lưu thiết lập"
+    }
+}

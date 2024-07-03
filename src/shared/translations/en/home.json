@@ -1,0 +1,12 @@
+{
+  "search_placeholder_header": "Search for places...",
+  "extend_title_history": "History",
+  "extend_title_drive": "Drive",
+  "extend_title_share": "Share",
+  "change_map_module": {
+    "type_map": "Map Type",
+    "is_traffic": "Show Traffic",
+    "quatity_map": "Map Quality",
+    "save_settings": "Save settings"
+  }
+}
