@@ -1,3 +1,4 @@
+import Config from 'react-native-config';
 import React, { useRef, useMemo } from 'react';
 import { StyleSheet, View, TouchableOpacity, Text, FlatList } from 'react-native'; // Import FlatList
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
@@ -47,7 +48,7 @@ const BottomSearch = () => {
                                         // });
                                     }}
                                     query={{
-                                        key: 'AIzaSyD1py8NqOf7P7XOCri1eBHAHxNaRXPdDo4',
+                                        key: Config.GOOGLE_MAPS_API_KEY,
                                         language: 'en',
                                         // location: `${region.latitude}, ${region.longitude}`,
                                     }}
