@@ -1,24 +1,29 @@
-import { SafeAreaView, StyleSheet, ScrollView } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 
-import { Colors } from "@/shared/constants/colors";
-import Dimens from "@/shared/theme/dimens";
+import { useTheme } from "@/shared/theme";
+
+import AppleSignIn from "./view/AppleSignIn";
+import FacebookSignIn from "./view/FacebookSignIn";
+import GoogleSignIn from "./view/GoogleSignIn";
 
 const LoginScreen = () => {
-    return (
-        <SafeAreaView style={styles.safeArea}>
-            <ScrollView style={styles.scrollView} scrollEnabled={false}>
+    const { layout } = useTheme();
 
-            </ScrollView>
-        </SafeAreaView>
+    return (
+        <View style={[
+            layout.flex_1,
+            layout.col,
+            layout.itemsCenter,
+            layout.justifyCenter,
+        ]}>
+            {Platform.OS && <AppleSignIn />}
+            <FacebookSignIn />
+            <GoogleSignIn />
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
-    safeArea: { backgroundColor: Colors.gray },
-    scrollView: {
-        height: Dimens.matchParent,
-        paddingHorizontal: 16,
-    },
 })
 
 export default LoginScreen;

@@ -39,7 +39,11 @@
    - https://docs.google.com/document/d/1kH5cfmFXuMp9pgIo6G4NET6bPcf8-UVSS9Il0ZgLMXQ/edit#
 
 3. Configure ENV
+
    - https://github.com/lugg/react-native-config
+
+4. Check Infor React Native
+   - Run: npx react-native info
 
 # Template Document
 

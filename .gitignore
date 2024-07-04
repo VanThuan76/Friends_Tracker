@@ -79,6 +79,7 @@ vendor/bundle/
 .env*.dev
 .env*.prod
 
-# Extends
+# Extends Firebase
 ios/tmp.xcconfig
+ios/GoogleService-Info.plist
 firebaseConfig.ts

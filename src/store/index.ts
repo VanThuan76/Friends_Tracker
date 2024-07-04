@@ -11,14 +11,20 @@ enableMapSet();
 
 const persistConfig = {
     key: 'root',
-    storage: LocalStorage
+    storage: LocalStorage,
+    whitelist: ['appSlice']
 };
 
 const persistedReducer = persistReducer(persistConfig, appSlice);
 
 export const store = configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({
+        serializableCheck: {
+            ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'],
+            ignoredPaths: ['_persist'],
+        },
+    }).concat(logger),
     devTools: true
 });
 

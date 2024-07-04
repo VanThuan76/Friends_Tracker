@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Platform, StyleSheet, View } from "react-native";
-import { PermissionsAndroid } from "react-native";
+import { Platform, StyleSheet, View, PermissionsAndroid, Text } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 
 import { useTheme } from "@/shared/theme";
 import { SafeScreen } from "@/components/template";
 import { useAppSelector } from "@/hooks/useRedux";
+import RequestLocation from '@components/views/RequestLocation';
+
 import HeaderView from "./views/HeaderView";
 import ExtendView from "./views/ExtendView";
 
@@ -24,6 +25,7 @@ const HomeScreen = () => {
         const getCurrentLocation = () => {
             Geolocation.getCurrentPosition(
                 (position) => {
+                    console.log(position);
                     const { latitude, longitude } = position.coords;
                     setRegion({
                         latitude,
@@ -39,8 +41,8 @@ const HomeScreen = () => {
             );
         };
 
-        if (Platform.OS === 'android') {
-            const requestLocationPermission = async () => {
+        const requestLocationPermission = async () => {
+            if (Platform.OS === 'android') {
                 try {
                     const granted = await PermissionsAndroid.request(
                         PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
@@ -60,11 +62,12 @@ const HomeScreen = () => {
                 } catch (err) {
                     console.warn(err);
                 }
-            };
-            requestLocationPermission();
-        } else {
-            getCurrentLocation();
-        }
+            } else {
+                getCurrentLocation();
+            }
+        };
+
+        requestLocationPermission();
     }, []);
 
     return (
@@ -82,10 +85,10 @@ const HomeScreen = () => {
                     region={region}
                     mapType={options_map.type_map} //satellite: Bản đồ vệ tinh
                     showsTraffic={options_map.is_traffic} //true
-                >
-                </MapView>
+               />
             </View>
             <ExtendView />
+            {/* <RequestLocation /> */}
         </SafeScreen>
     );
 };
