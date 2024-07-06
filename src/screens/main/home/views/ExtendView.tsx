@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useTheme } from "@/shared/theme";
 import { isAndroid } from "@/shared/constants/platform";
 import Dimens from "@/shared/theme/dimens";
-import Images from "@/shared/images";
+import Images from "@/shared/icons";
 
 import ChangeMapModal from "@components/molecules/ChangeMap/ChangeMapModal";
 

@@ -3,7 +3,7 @@ import { StyleProp, StyleSheet, Text, TextStyle, TouchableOpacity, View } from '
 
 import { useTheme } from '@/shared/theme';
 import Dimens from '@/shared/theme/dimens';
-import Images from '@/shared/images';
+import Images from '@/shared/icons';
 
 import RNTextInput, { RNTextInputProps } from './RNTextInput'
 

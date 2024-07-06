@@ -1,44 +1,47 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
 import React, { FC, useEffect } from 'react';
+import { StyleSheet, Text, Pressable } from 'react-native';
 import Animated, {
-    useAnimatedProps,
     useAnimatedStyle,
     useSharedValue,
     withTiming,
 } from 'react-native-reanimated';
-import Feather from 'react-native-vector-icons/Feather';
+
+import IconHome from '@shared/icons/figma/navigation/icon_home.svg';
+import IconLocation from '@shared/icons/figma/navigation/icon_location.svg';
+import IconPeople from '@shared/icons/figma/navigation/icon_people.svg';
+import IconProfileUser from '@shared/icons/figma/navigation/icon_profile_user.svg';
 
 import usePath from '@hooks/usePath';
-
-import { getPathXCenterByIndex } from '@shared//utils/path';
+import { getPathXCenterByIndex } from '@shared/utils/path';
 import { SCREEN_WIDTH } from '@shared/constants/screen';
 import { useTheme } from '@/shared/theme';
 
 export type TabProps = {
     label: string;
-    icon: string;
+    routeName: string;
     index: number;
     activeIndex: number;
     onTabPress: () => void;
 };
+
 const ICON_SIZE = 25;
 const LABEL_WIDTH = SCREEN_WIDTH / 4;
-const AnimatedIcon = Animated.createAnimatedComponent(Feather);
+
 const TabItem: FC<TabProps> = ({
     label,
-    icon,
+    routeName,
     index,
     activeIndex,
     onTabPress,
 }) => {
     const { curvedPaths } = usePath();
-    const { colors } = useTheme()
+    const { colors } = useTheme();
     const animatedActiveIndex = useSharedValue(activeIndex);
     const iconPosition = getPathXCenterByIndex(curvedPaths, index);
     const labelPosition = getPathXCenterByIndex(curvedPaths, index);
 
     const tabStyle = useAnimatedStyle(() => {
-        const translateY = animatedActiveIndex.value - 1 === index ? -14 : 20;
+        const translateY = animatedActiveIndex.value - 1 === index ? -12 : 20;
         const iconPositionX = iconPosition - index * ICON_SIZE;
         return {
             width: ICON_SIZE,
@@ -49,7 +52,7 @@ const TabItem: FC<TabProps> = ({
             ],
         };
     });
-    
+
     const labelContainerStyle = useAnimatedStyle(() => {
         const translateY = animatedActiveIndex.value - 1 === index ? 36 : 50;
         return {
@@ -59,11 +62,27 @@ const TabItem: FC<TabProps> = ({
             ],
         };
     });
+
     const iconColor = useSharedValue(
         activeIndex === index + 1 ? 'white' : colors.gray400,
     );
 
-    //Adjust Icon color for this first render
+    const selectIcon = (routeName: string) => {
+        switch (routeName) {
+            case 'Home Navigator':
+                return <IconHome width={25} height={25} color={iconColor} />
+            case 'Member Navigator':
+                return <IconPeople width={25} height={25} color={iconColor} />
+            case 'Zone Navigator':
+                return <IconLocation width={25} height={25} color={iconColor} />
+            case 'Profile Navigator':
+                return <IconProfileUser width={25} height={25} color={iconColor} />
+            default:
+                return <IconProfileUser width={25} height={25} color={iconColor} />
+        }
+    };
+
+    // Adjust Icon color for this first render
     useEffect(() => {
         animatedActiveIndex.value = activeIndex;
         if (activeIndex === index + 1) {
@@ -73,23 +92,17 @@ const TabItem: FC<TabProps> = ({
         }
     }, [activeIndex]);
 
-    const animatedIconProps = useAnimatedProps(() => ({
-        color: iconColor.value,
-    }));
     const labelColor = activeIndex === index + 1 ? colors.orange500 : colors.gray400;
+
     return (
         <>
             <Animated.View style={[tabStyle]}>
                 <Pressable
                     testID={`tab${label}`}
-                    //Increasing touchable Area
+                    // Increasing touchable Area
                     hitSlop={{ top: 30, bottom: 30, left: 50, right: 50 }}
                     onPress={onTabPress}>
-                    <AnimatedIcon
-                        name={icon}
-                        size={25}
-                        animatedProps={animatedIconProps}
-                    />
+                    {selectIcon(routeName)}
                 </Pressable>
             </Animated.View>
             <Animated.View style={[labelContainerStyle, styles.labelContainer]}>
@@ -108,7 +121,7 @@ const styles = StyleSheet.create({
         width: LABEL_WIDTH,
     },
     label: {
-        color: 'rgba(128,128,128,0.8)',
+        color: 'rgba(128, 128, 128, 0.8)',
         fontSize: 12,
     },
 });

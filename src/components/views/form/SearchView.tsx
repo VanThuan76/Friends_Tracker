@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleProp, StyleSheet, TextInput, TouchableOpacity, View, ViewStyle } from 'react-native';
 
 import { useTheme } from '@/shared/theme';
-import Images from '@/shared/images';
+import Images from '@/shared/icons';
 
 const SearchView = (props: Props) => {
     const { colors, fonts } = useTheme();

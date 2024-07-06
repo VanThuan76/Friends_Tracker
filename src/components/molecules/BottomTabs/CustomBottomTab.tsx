@@ -18,6 +18,7 @@ import { getPathXCenter } from '@shared/utils/path';
 import TabItem from './TabItem';
 import AnimatedCircle from './AnimatedCircle';
 
+
 const AnimatedPath = Animated.createAnimatedComponent(Path);
 export const CustomBottomTab: FC<BottomTabBarProps> = ({
     state,
@@ -30,20 +31,8 @@ export const CustomBottomTab: FC<BottomTabBarProps> = ({
     const handleMoveCircle = (currentPath: string) => {
         circleXCoordinate.value = getPathXCenter(currentPath);
     };
-    const selectIcon = (routeName: string) => {
-        switch (routeName) {
-            case 'Home':
-                return 'home';
-            case 'Member':
-                return 'users';
-            case 'Zone':
-                return 'map-pin';
-            case 'Profile':
-                return 'user';
-            default:
-                return 'home';
-        }
-    };
+
+
     const animatedProps = useAnimatedProps(() => {
         const currentPath = interpolatePath(
             progress.value,
@@ -81,7 +70,7 @@ export const CustomBottomTab: FC<BottomTabBarProps> = ({
                         <TabItem
                             key={index.toString()}
                             label={label as string}
-                            icon={selectIcon(route.name)}
+                            routeName={route.name}
                             activeIndex={state.index + 1}
                             index={index}
                             onTabPress={() => handleTabPress(index + 1, route.name)}

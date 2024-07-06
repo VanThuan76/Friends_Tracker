@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, TouchableOpacity, View, ViewStyle } from 'react-native'
 
-import Images from '@/shared/images'
+import Images from '@/shared/icons'
 
 import RNImage from './RNImage'
 

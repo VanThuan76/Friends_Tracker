@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react-native';
 import { MMKV } from 'react-native-mmkv';
 
 import { ThemeProvider } from '@/shared/theme';
-import sourceLight from '@/shared/images/tom_light.png';
-import sourceDark from '@/shared/images/tom_dark.png';
+import sourceLight from '@/shared/icons/tom_light.png';
+import sourceDark from '@/shared/icons/tom_dark.png';
 
 import { isImageSourcePropType } from '@/types/guards/image';
 

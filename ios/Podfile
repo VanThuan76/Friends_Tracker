@@ -48,6 +48,12 @@ target 'FriendsTracker' do
   use_frameworks! :linkage => :static
   $RNFirebaseAsStaticFramework = true
 
+  # Firestore
+  pod 'RNFBFirestore', :path => '../node_modules/@react-native-firebase/firestore'
+
+  # React Native FBSDK dependencies
+  pod 'react-native-fbsdk-next', :path => '../node_modules/react-native-fbsdk-next'
+
   # React Native Maps dependencies
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'react-native-google-maps', :path => rn_maps_path
@@ -74,5 +80,12 @@ target 'FriendsTracker' do
       :mac_catalyst_enabled => false,
       # :ccache_enabled => true
     )
+    installer.pods_project.targets.each do |target|
+      if target.name == 'react-native-google-maps'
+        target.build_configurations.each do |config|
+          config.build_settings['CLANG_ENABLE_MODULES'] = 'Yes'
+        end
+      end
+    end
   end
 end

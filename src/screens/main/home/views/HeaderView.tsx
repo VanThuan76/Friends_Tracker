@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import { ScreenNamesEnum } from '@/navigators/ScreenNames';
 import { HomeParamList } from '@/navigators/home/HomeNavigator';
-import Images from "@/shared/images";
+import Images from "@/shared/icons";
 import Dimens from "@/shared/theme/dimens";
 import SearchView from "@/components/views/form/SearchView";
 

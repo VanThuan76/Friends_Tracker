@@ -1,7 +1,7 @@
 import { View, DimensionValue } from 'react-native';
 
-import LogoLight from '@/shared/images/tom_light.png';
-import LogoDark from '@/shared/images/tom_dark.png';
+import LogoLight from '@/shared/icons/tom_light.png';
+import LogoDark from '@/shared/icons/tom_dark.png';
 
 import { ImageVariant } from '@/components/atoms';
 import { useTheme } from '@/shared/theme';

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Platform, StyleSheet, View, PermissionsAndroid } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
@@ -8,7 +8,6 @@ import { setCurrentUserLocation } from "@/store/appSlice";
 import { useTheme } from "@/shared/theme";
 import { Colors } from "@/shared/constants/colors";
 
-import { SafeScreen } from "@/components/template";
 import AvatarView from "@/components/views/AvatarView";
 
 import HeaderView from "./views/HeaderView";
@@ -75,7 +74,7 @@ const HomeScreen = () => {
     }, []);
 
     return (
-        <SafeScreen>
+        <>
             <HeaderView />
             <View style={[
                 layout.flex_1,
@@ -105,7 +104,7 @@ const HomeScreen = () => {
                 </MapView>
             </View>
             <ExtendView />
-        </SafeScreen>
+        </>
     );
 };
 

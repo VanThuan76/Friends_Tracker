@@ -14,15 +14,15 @@ import RNButton from "@/components/views/RNButton";
 const dataTypeMaps = [
     {
         title: 'standard',
-        image: require('@assets/changeMap_image_1.png'),
+        image: require('@assets/images/home/changeMap/image_1.png'),
     },
     {
         title: 'satellite',
-        image: require('@assets/changeMap_image_2.png'),
+        image: require('@assets/images/home/changeMap/image_2.png'),
     },
     {
         title: 'hybrid',
-        image: require('@assets/changeMap_image_3.png'),
+        image: require('@assets/images/home/changeMap/image_3.png'),
     }
 ]
 

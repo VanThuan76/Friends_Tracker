@@ -48,3 +48,4 @@
 # Template Document
 
 - https://thecodingmachine.github.io/react-native-boilerplate/docs/project-structure
+- https://thecodingmachine.github.io/react-native-boilerplate/docs/BetaBuild

@@ -1,5 +1,6 @@
-import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import Animated, {
     useAnimatedStyle,
     withSpring,
@@ -7,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { FlatList } from 'react-native';
-import Images from '@/shared/images';
+import Images from '@/shared/icons';
 
 interface CustomButtonOnBroadProps {
     flatListRef: React.RefObject<FlatList<any>>;
@@ -16,25 +17,14 @@ interface CustomButtonOnBroadProps {
 }
 
 const CustomButtonOnBroad: React.FC<CustomButtonOnBroadProps> = ({ flatListRef, flatListIndex, dataLength }) => {
+    const { t } = useTranslation(['common']);
+
     const navigation = useNavigation<NavigationProp<any>>();
 
     const buttonAnimationStyle = useAnimatedStyle(() => {
         return {
             width: flatListIndex.value === dataLength - 1 ? withSpring(140) : withSpring(60),
             height: 60,
-        };
-    });
-
-    const arrowAnimationStyle = useAnimatedStyle(() => {
-        return {
-            width: 30,
-            height: 30,
-            opacity: flatListIndex.value === dataLength - 1 ? withTiming(0) : withTiming(1),
-            transform: [
-                {
-                    translateX: flatListIndex.value === dataLength - 1 ? withTiming(100) : withTiming(0),
-                },
-            ],
         };
     });
 
@@ -61,13 +51,9 @@ const CustomButtonOnBroad: React.FC<CustomButtonOnBroadProps> = ({ flatListRef, 
         >
             <Animated.View style={[styles.container, buttonAnimationStyle]}>
                 <Animated.Text style={[styles.textButton, textAnimationStyle]}>
-                    Get Started
+                    {t('common:start')}
                 </Animated.Text>
                 {Images.iconArrowRight}
-                {/* <Animated.Image
-                    source={Images.iconArrowRight}
-                    style={[styles.arrow, arrowAnimationStyle]}
-                /> */}
             </Animated.View>
         </TouchableWithoutFeedback>
     );
