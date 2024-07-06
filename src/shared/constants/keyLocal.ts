@@ -1,0 +1,3 @@
+export const KEY_LOCALS = {
+    FAVORITE_ADDRESS: 'FAVORITE_ADDRESS'
+}

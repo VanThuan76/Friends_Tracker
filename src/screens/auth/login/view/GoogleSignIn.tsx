@@ -1,19 +1,21 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Alert, StyleSheet } from "react-native";
-import { User, statusCodes, isErrorWithCode, GoogleSigninButton, GoogleSignin } from "@react-native-google-signin/google-signin";
+import { statusCodes, isErrorWithCode, GoogleSigninButton, GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useTranslation } from 'react-i18next';
 
+import { login } from '@/store/appSlice';
+import { useAppDispatch } from '@/hooks/useRedux';
+
 function GoogleSignInView() {
-    const [state, setState] = useState<{ userInfo: User | undefined, error: Error | undefined }>()
+    const dispatch = useAppDispatch()
     const { t } = useTranslation(['auth']);
 
-    console.log(state)
-    
+
     const signIn = async () => {
         try {
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
-            setState({ userInfo, error: undefined });
+            dispatch(login(userInfo.user));
         } catch (error) {
             if (isErrorWithCode(error)) {
                 console.log('error', error.message);
@@ -36,7 +38,6 @@ function GoogleSignInView() {
                     default:
                         Alert.alert('Something went wrong: ', error.toString());
                 }
-                setState({ userInfo: undefined, error });
             } else {
                 Alert.alert(`an error that's not related to google sign in occurred`);
             }

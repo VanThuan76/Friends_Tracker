@@ -1,19 +1,16 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 
+import { IUser } from '@/@types/auth';
+
 type APPSTATE = {
     user:
-    | {
-        id: null;
-        role_id: null;
-        name: '';
-        email: '';
-        avatar: '';
-        email_verified_at: null;
-        created_at: null;
-        updated_at: null;
+    | IUser
+    | undefined,
+    current_user_location: {
+        lat: number;
+        lng: number;
     }
-    | undefined;
     options_map: {
         type_map: 'standard' | 'satellite'
         is_traffic: boolean;
@@ -21,7 +18,6 @@ type APPSTATE = {
     },
     isLogined: boolean;
     isRouteLoading: boolean;
-    currentAddress: string;
     safeAreaTop: number;
     safeAreaBottom: number;
     menuOpen: boolean;
@@ -35,9 +31,12 @@ const initialState: APPSTATE = {
         is_traffic: false,
         is_quality: false
     },
+    current_user_location: {
+        lat: 37.78825, //Default location
+        lng: -122.4324 //Default location
+    },
     isLogined: false,
     isRouteLoading: false,
-    currentAddress: "",
     safeAreaTop: 0,
     safeAreaBottom: 0,
     menuOpen: false,
@@ -61,9 +60,6 @@ export const appSlice = createSlice({
         setLoading: (state, action: PayloadAction<boolean>) => {
             state.isRouteLoading = action.payload;
         },
-        setAddress: (state, action: PayloadAction<string>) => {
-            state.currentAddress = action.payload;
-        },
         setMenuOpen: (state, action: PayloadAction<boolean>) => {
             state.menuOpen = action.payload;
         },
@@ -72,6 +68,9 @@ export const appSlice = createSlice({
         },
         setOptionsMap: (state, action: PayloadAction<any>) => {
             state.options_map = action.payload;
+        },
+        setCurrentUserLocation: (state, action: PayloadAction<any>) => {
+            state.current_user_location = action.payload;
         }
     },
 });
@@ -81,10 +80,10 @@ export const {
     authUser,
     logout,
     setLoading,
-    setAddress,
     setMenuOpen,
     setNotificationsOpen,
-    setOptionsMap
+    setOptionsMap,
+    setCurrentUserLocation
 } = appSlice.actions;
 
 export default appSlice.reducer;

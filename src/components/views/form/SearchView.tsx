@@ -15,6 +15,7 @@ const SearchView = (props: Props) => {
                 onChangeText={props.onChangeText}
                 style={[fonts.regular, styles.input, {color: colors.orange500}]}
                 editable={props.editable ?? true}
+                onPress={props.onSearch}
             />
             <TouchableOpacity style={styles.iconSearchTouch} onPress={props.onSearch}>
                 {Images.iconSearch}

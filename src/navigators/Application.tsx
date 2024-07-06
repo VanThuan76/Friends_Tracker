@@ -8,7 +8,7 @@ function ApplicationNavigator() {
 	const isLogined = useAppSelector(state => state.isLogined)
 	return (
 		<>
-			{!isLogined ? <MainNavigator /> : <AuthNavigator />}
+			{isLogined ? <MainNavigator /> : <AuthNavigator />}
 		</>
 	);
 }

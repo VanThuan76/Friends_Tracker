@@ -7,5 +7,6 @@ const Colors = {
     dark_gray: '#666',
     natural600: '#ABABAB',
     natural100: '#FCFCFC',
+    orange500: '#E65100'
 };
 export { Colors };

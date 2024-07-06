@@ -12,6 +12,7 @@ import IconCar from '@shared/images/figma/navigation/extends/icon_car.svg';
 import IconShare from '@shared/images/figma/navigation/extends/icon_share.svg';
 import IconArrowRight from '@shared/images/figma/icon_arrow_right.svg';
 import IconExpandBox from '@shared/images/figma/icon_expand_box.svg';
+import IconUserDefault from '@shared/images/figma/icon_user_default.svg';
 
 const Images = {
     // Common
@@ -21,11 +22,12 @@ const Images = {
     iconMenu: <IconMenu width={20} height={20} />,
     iconNotification: <IconNotification width={20} height={20} />,
     iconMessage: <IconMessage width={20} height={20} />,
+    iconUserDefault: <IconUserDefault width={20} height={20} />,
     // Navigation
-    iconHome: <IconHome width={20} height={20} />,
-    iconLocation: <IconLocation width={20} height={20} />,
-    iconPeople: <IconPeople width={20} height={20} />,
-    iconProfileUser: <IconProfileUser width={20} height={20} />,
+    iconHome: <IconHome width={25} height={25} />,
+    iconLocation: <IconLocation width={25} height={25} />,
+    iconPeople: <IconPeople width={25} height={25} />,
+    iconProfileUser: <IconProfileUser width={25} height={25} />,
          // Extends
          iconHistory: <IconHistory width={20} height={20} />,
          iconCar: <IconCar width={20} height={20} />,

@@ -1,38 +1,42 @@
 import React, { useEffect, useState } from "react";
-import { Platform, StyleSheet, View, PermissionsAndroid, Text } from "react-native";
-import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
+import { Platform, StyleSheet, View, PermissionsAndroid } from "react-native";
+import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
 
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import { setCurrentUserLocation } from "@/store/appSlice";
 import { useTheme } from "@/shared/theme";
+import { Colors } from "@/shared/constants/colors";
+
 import { SafeScreen } from "@/components/template";
-import { useAppSelector } from "@/hooks/useRedux";
-import RequestLocation from '@components/views/RequestLocation';
+import AvatarView from "@/components/views/AvatarView";
 
 import HeaderView from "./views/HeaderView";
 import ExtendView from "./views/ExtendView";
 
 const HomeScreen = () => {
-    const options_map = useAppSelector(state => state.options_map)
+    const dispatch = useAppDispatch()
     const { layout } = useTheme();
-    const [region, setRegion] = useState({
-        latitude: 37.78825,
-        longitude: -122.4324,
+
+    const currentUserLocation = useAppSelector(state => state.current_user_location)
+    const optionsMap = useAppSelector(state => state.options_map)
+    const user = useAppSelector(state => state.user)
+
+    const region = {
+        latitude: currentUserLocation?.lat ?? 37.78825,
+        longitude: currentUserLocation?.lng ?? -122.4324,
         latitudeDelta: 0.015,
         longitudeDelta: 0.0121,
-    });
+    }
 
     useEffect(() => {
         const getCurrentLocation = () => {
             Geolocation.getCurrentPosition(
                 (position) => {
-                    console.log(position);
+                    console.log(position)
                     const { latitude, longitude } = position.coords;
-                    setRegion({
-                        latitude,
-                        longitude,
-                        latitudeDelta: 0.015,
-                        longitudeDelta: 0.0121,
-                    });
+                    if (!latitude || !longitude) return
+                    dispatch(setCurrentUserLocation({ lat: latitude, lng: longitude }))
                 },
                 (error) => {
                     console.error('Error getting current location:', error);
@@ -81,14 +85,26 @@ const HomeScreen = () => {
             ]}>
                 <MapView
                     provider={PROVIDER_GOOGLE}
+                    loadingEnabled
+                    loadingIndicatorColor={Colors.medium_gray}
+                    loadingBackgroundColor={Colors.white}
                     style={styles.map}
                     region={region}
-                    mapType={options_map.type_map} //satellite: Bản đồ vệ tinh
-                    showsTraffic={options_map.is_traffic} //true
-               />
+                    mapType={optionsMap.type_map} //satellite: Bản đồ vệ tinh
+                    showsTraffic={optionsMap.is_traffic} //true
+                >
+                    <Marker
+                        coordinate={{ latitude: region.latitude, longitude: region.longitude }}
+                        centerOffset={{ x: -42, y: -60 }}
+                        title={user?.name}
+                    >
+                        <View style={styles.containerMarker}>
+                            <AvatarView uri={user?.photo} />
+                        </View>
+                    </Marker>
+                </MapView>
             </View>
             <ExtendView />
-            {/* <RequestLocation /> */}
         </SafeScreen>
     );
 };
@@ -99,4 +115,7 @@ const styles = StyleSheet.create({
     map: {
         ...StyleSheet.absoluteFillObject,
     },
+    containerMarker: {
+
+    }
 });
