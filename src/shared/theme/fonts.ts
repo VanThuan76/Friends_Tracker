@@ -27,6 +27,9 @@ export const generateFontSizes = () => {
 };
 
 export const staticFontStyles = {
+	lighter: {
+		fontWeight: '300'
+	},
 	bold: {
 		fontWeight: 'bold',
 	},

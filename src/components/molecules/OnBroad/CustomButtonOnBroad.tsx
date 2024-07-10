@@ -8,7 +8,9 @@ import Animated, {
 } from 'react-native-reanimated';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { FlatList } from 'react-native';
-import Images from '@/shared/icons';
+
+import { Colors } from '@/shared/constants/colors';
+import Dimens from '@/shared/theme/dimens';
 
 interface CustomButtonOnBroadProps {
     flatListRef: React.RefObject<FlatList<any>>;
@@ -23,7 +25,7 @@ const CustomButtonOnBroad: React.FC<CustomButtonOnBroadProps> = ({ flatListRef, 
 
     const buttonAnimationStyle = useAnimatedStyle(() => {
         return {
-            width: flatListIndex.value === dataLength - 1 ? withSpring(140) : withSpring(60),
+            width: withSpring(250),
             height: 60,
         };
     });
@@ -34,6 +36,17 @@ const CustomButtonOnBroad: React.FC<CustomButtonOnBroadProps> = ({ flatListRef, 
             transform: [
                 {
                     translateX: flatListIndex.value === dataLength - 1 ? withTiming(0) : withTiming(-100),
+                },
+            ],
+        };
+    });
+
+    const textWithoutAnimationStyle = useAnimatedStyle(() => {
+        return {
+            opacity: flatListIndex.value !== dataLength - 1 ? withTiming(1) : withTiming(0),
+            transform: [
+                {
+                    translateX: flatListIndex.value !== dataLength - 1 ? withTiming(0) : withTiming(-100),
                 },
             ],
         };
@@ -53,7 +66,9 @@ const CustomButtonOnBroad: React.FC<CustomButtonOnBroadProps> = ({ flatListRef, 
                 <Animated.Text style={[styles.textButton, textAnimationStyle]}>
                     {t('common:start')}
                 </Animated.Text>
-                {Images.iconArrowRight}
+                <Animated.Text style={[styles.textButton, textWithoutAnimationStyle]}>
+                    {t('common:continue')}
+                </Animated.Text>
             </Animated.View>
         </TouchableWithoutFeedback>
     );
@@ -63,9 +78,9 @@ export default CustomButtonOnBroad;
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'orange',
+        backgroundColor: 'white',
         padding: 10,
-        borderRadius: 100,
+        borderRadius: 12,
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
@@ -74,7 +89,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
     },
     textButton: {
-        color: 'white',
+        color: Colors.orange500,
         fontSize: 16,
         position: 'absolute',
     },

@@ -63,43 +63,34 @@ const TabItem: FC<TabProps> = ({
         };
     });
 
-    const iconColor = useSharedValue(
-        activeIndex === index + 1 ? 'white' : colors.gray400,
-    );
+    // Adjust Icon color for this first render
+    useEffect(() => {
+        animatedActiveIndex.value = activeIndex;
+    }, [activeIndex]);
+
+    const iconColor = activeIndex === index + 1 ? 'white' : colors.gray400;
+    const labelColor = activeIndex === index + 1 ? colors.orange500 : colors.gray400;
 
     const selectIcon = (routeName: string) => {
         switch (routeName) {
             case 'Home Navigator':
-                return <IconHome width={25} height={25} color={iconColor} />
+                return <IconHome width={25} height={25} color={iconColor} />;
             case 'Member Navigator':
-                return <IconPeople width={25} height={25} color={iconColor} />
+                return <IconPeople width={25} height={25} color={iconColor} />;
             case 'Zone Navigator':
-                return <IconLocation width={25} height={25} color={iconColor} />
+                return <IconLocation width={25} height={25} color={iconColor} />;
             case 'Profile Navigator':
-                return <IconProfileUser width={25} height={25} color={iconColor} />
+                return <IconProfileUser width={25} height={25} color={iconColor} />;
             default:
-                return <IconProfileUser width={25} height={25} color={iconColor} />
+                return <IconProfileUser width={25} height={25} color={iconColor} />;
         }
     };
-
-    // Adjust Icon color for this first render
-    useEffect(() => {
-        animatedActiveIndex.value = activeIndex;
-        if (activeIndex === index + 1) {
-            iconColor.value = withTiming('white');
-        } else {
-            iconColor.value = withTiming(colors.gray400);
-        }
-    }, [activeIndex]);
-
-    const labelColor = activeIndex === index + 1 ? colors.orange500 : colors.gray400;
 
     return (
         <>
             <Animated.View style={[tabStyle]}>
                 <Pressable
                     testID={`tab${label}`}
-                    // Increasing touchable Area
                     hitSlop={{ top: 30, bottom: 30, left: 50, right: 50 }}
                     onPress={onTabPress}>
                     {selectIcon(routeName)}

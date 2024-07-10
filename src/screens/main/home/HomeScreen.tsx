@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Avatar } from "react-native-paper";
 import { Platform, StyleSheet, View, PermissionsAndroid } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
@@ -7,8 +8,6 @@ import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 import { setCurrentUserLocation } from "@/store/appSlice";
 import { useTheme } from "@/shared/theme";
 import { Colors } from "@/shared/constants/colors";
-
-import AvatarView from "@/components/views/AvatarView";
 
 import HeaderView from "./views/HeaderView";
 import ExtendView from "./views/ExtendView";
@@ -98,7 +97,7 @@ const HomeScreen = () => {
                         title={user?.name}
                     >
                         <View style={styles.containerMarker}>
-                            <AvatarView uri={user?.photo} />
+                            <Avatar.Image size={55} source={{ uri: user?.photo }} />
                         </View>
                     </Marker>
                 </MapView>
@@ -115,6 +114,11 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
     },
     containerMarker: {
-
+        borderWidth: 2,
+        borderColor: Colors.white,
+        borderRadius: 50,
+        padding: 2,
+        backgroundColor: Colors.white,
+        position: 'absolute',
     }
 });

@@ -13,8 +13,8 @@ import Animated, {
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import Dimens from '@/shared/theme/dimens';
-import Pagination from '@/components/views/Pagination';
-import CustomButtonOnBroad from '@/components/views/CustomButtonOnBroad';
+import Pagination from '@/components/molecules/OnBroad/Pagination';
+import CustomButtonOnBroad from '@/components/molecules/OnBroad/CustomButtonOnBroad';
 
 export interface Item {
     id: any;
@@ -125,7 +125,7 @@ const OnboardingScreen: React.FC = () => {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <>
             <Animated.FlatList
                 ref={flatListRef}
                 onScroll={onScroll}
@@ -147,7 +147,7 @@ const OnboardingScreen: React.FC = () => {
                 <Pagination data={data} x={x} screenWidth={SCREEN_WIDTH} />
                 <CustomButtonOnBroad flatListRef={flatListRef} flatListIndex={flatListIndex} dataLength={data.length} />
             </View>
-        </SafeAreaView>
+        </>
     );
 };
 
@@ -167,7 +167,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontSize: 22,
         fontWeight: 'bold',
-        marginTop: 100,
+        marginTop: 300,
         marginHorizontal: 20,
         color: 'white',
         lineHeight: 32,

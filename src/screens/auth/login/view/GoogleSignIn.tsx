@@ -1,28 +1,42 @@
 import React from 'react';
+import firestore from '@react-native-firebase/firestore';
 import { Alert, StyleSheet } from "react-native";
+import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { statusCodes, isErrorWithCode, GoogleSigninButton, GoogleSignin } from "@react-native-google-signin/google-signin";
 import { useTranslation } from 'react-i18next';
 
 import { login } from '@/store/appSlice';
 import { useAppDispatch } from '@/hooks/useRedux';
 
+import { ScreenNamesEnum } from '@/navigators/ScreenNames';
+
+const usersCollection = firestore().collection('users');
+
 function GoogleSignInView() {
     const dispatch = useAppDispatch()
     const { t } = useTranslation(['auth']);
-
+    const navigation = useNavigation<NavigationProp<any>>()
 
     const signIn = async () => {
         try {
             await GoogleSignin.hasPlayServices();
             const userInfo = await GoogleSignin.signIn();
             dispatch(login(userInfo.user));
+            const userSnapshot = await usersCollection.where('email', '==', userInfo.user.email).get();
+
+            if (userSnapshot.empty) {
+                navigation.navigate(ScreenNamesEnum.REGISTER_SCREEN)
+            } else {
+                navigation.navigate(ScreenNamesEnum.HOME_SCREEN)
+            }
         } catch (error) {
             if (isErrorWithCode(error)) {
                 console.log('error', error.message);
                 switch (error.code) {
                     case statusCodes.SIGN_IN_CANCELLED:
                         setTimeout(() => {
-                            Alert.alert('cancelled');
+                            const text = t('auth:cancelled')
+                            Alert.alert(text);
                         }, 500);
                         break;
                     case statusCodes.IN_PROGRESS:

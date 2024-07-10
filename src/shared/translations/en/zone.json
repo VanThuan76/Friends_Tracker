@@ -1,0 +1,14 @@
+{
+  "create_zone": "Create Zone",
+  "join_zone": "Join Zone",
+  "create_zone_description": "Use the drag bar to adjust the zone size",
+  "create_zone_info_description": "Choose a name for your new zone",
+  "fill_code": "Enter the CODE",
+  "description_fill_code": "Enter the CODE code to join your loved one's Zone",
+  "options_create_zone_info": {
+    "option_1": "Home",
+    "option_2": "Company",
+    "option_3": "School",
+    "option_4": "Supermarket"
+  }
+}

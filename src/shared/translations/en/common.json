@@ -15,5 +15,7 @@
   "average": "Average",
   "high": "High",
   "low": "Low",
-  "start": "Get Started"
+  "start": "Get Started",
+  "continue": "Continue",
+  "hint": "Hint"
 }

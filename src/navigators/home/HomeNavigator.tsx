@@ -1,6 +1,6 @@
 import { createStackNavigator } from "@react-navigation/stack"
 
-import SearchAddressScreen from "@/screens/main/search_address/SearchAddressScreen"
+import SearchAddressScreen from "@/screens/main/searchAddress/SearchAddressScreen"
 import HomeScreen from "@/screens/main/home/HomeScreen"
 
 import { ScreenNamesEnum } from "../ScreenNames"

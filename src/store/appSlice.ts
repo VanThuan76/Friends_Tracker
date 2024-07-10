@@ -10,6 +10,10 @@ type APPSTATE = {
     current_user_location: {
         lat: number;
         lng: number;
+    },
+    chosen_region_distance: {
+        lat: number;
+        lng: number;
     }
     options_map: {
         type_map: 'standard' | 'satellite'
@@ -21,6 +25,7 @@ type APPSTATE = {
     safeAreaTop: number;
     safeAreaBottom: number;
     menuOpen: boolean;
+    tabBarOpen: boolean;
     notificationsOpen: boolean;
 };
 
@@ -35,11 +40,16 @@ const initialState: APPSTATE = {
         lat: 37.78825, //Default location
         lng: -122.4324 //Default location
     },
+    chosen_region_distance: {
+        lat: 37.78825, //Default location
+        lng: -122.4324 //Default location
+    },
     isLogined: false,
     isRouteLoading: false,
     safeAreaTop: 0,
     safeAreaBottom: 0,
     menuOpen: false,
+    tabBarOpen: true,
     notificationsOpen: false,
 };
 export const appSlice = createSlice({
@@ -63,6 +73,9 @@ export const appSlice = createSlice({
         setMenuOpen: (state, action: PayloadAction<boolean>) => {
             state.menuOpen = action.payload;
         },
+        setTabBarOpen: (state, action: PayloadAction<boolean>) => {
+            state.tabBarOpen = action.payload;
+        },
         setNotificationsOpen: (state, action: PayloadAction<boolean>) => {
             state.notificationsOpen = action.payload;
         },
@@ -71,6 +84,9 @@ export const appSlice = createSlice({
         },
         setCurrentUserLocation: (state, action: PayloadAction<any>) => {
             state.current_user_location = action.payload;
+        },
+        setRegionDistance: (state, action: PayloadAction<any>) => {
+            state.chosen_region_distance = action.payload;
         }
     },
 });
@@ -81,9 +97,11 @@ export const {
     logout,
     setLoading,
     setMenuOpen,
+    setTabBarOpen,
     setNotificationsOpen,
     setOptionsMap,
-    setCurrentUserLocation
+    setCurrentUserLocation,
+    setRegionDistance
 } = appSlice.actions;
 
 export default appSlice.reducer;

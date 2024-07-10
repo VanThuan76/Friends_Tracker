@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+ 	<key>FacebookAppID</key>
+    <string>247854225698809</string>
 	<key>GIDClientID</key>
 	<string>224985631475-v4v7jd5hgn5ck0qguqa3k9kr7f3gff4e.apps.googleusercontent.com</string>
 	<key>CFBundleDevelopmentRegion</key>

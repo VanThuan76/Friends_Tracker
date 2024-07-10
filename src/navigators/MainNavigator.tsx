@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import MemberScreen from '@/screens/main/member/MemberScreen';
-import ZoneScreen from '@/screens/main/zone/ZoneScreen';
-import ProfileScreen from '@/screens/main/profile/ProfileScreen';
 
 import { CustomBottomTab } from '@/components/molecules';
 
 import HomeNavigator from './home/HomeNavigator';
+import ZoneNavigator from './zone/ZoneNavigator';
+import ProfileNavigator from './profile/ProfileNavigator';
 
 import { screenNames, ScreenNamesEnum } from './ScreenNames';
 
@@ -42,12 +42,13 @@ const MainNavigator = () => {
                 <Main.Screen
                     options={{ tabBarLabel: SCREEN_TITLES.ZONE }}
                     name={ScreenNamesEnum.ZONE_NAVIGATOR}
-                    component={ZoneScreen}
+                    component={ZoneNavigator}
                 />
+                
                 <Main.Screen
                     options={{ tabBarLabel: SCREEN_TITLES.PROFILE }}
                     name={ScreenNamesEnum.PROFILE_NAVIGATOR}
-                    component={ProfileScreen}
+                    component={ProfileNavigator}
                 />
             </Main.Group>
         </Main.Navigator>

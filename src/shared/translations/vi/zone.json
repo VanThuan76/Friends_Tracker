@@ -1,0 +1,14 @@
+{
+  "create_zone": "Tạo vùng",
+  "join_zone": "Vào vùng",
+  "create_zone_description": "Dùng thanh kéo để điều chỉnh kích thước vùng",
+  "create_zone_info_description": "Chọn tên cho vùng mới của bạn",
+  "fill_code": "Nhập mã CODE",
+  "description_fill_code": "Nhập mã CODE để tham gia vào vùng người thân của bạn",
+  "options_create_zone_info": {
+    "option_1": "Nhà",
+    "option_2": "Công ty",
+    "option_3": "Trường học",
+    "option_4": "Siêu thị"
+  }
+}

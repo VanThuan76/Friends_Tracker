@@ -6,7 +6,7 @@
   "menu": {
     "home": "Trang chủ",
     "member": "Thành viên",
-    "zone": "Tạo Zone",
+    "zone": "Tạo vùng",
     "profile": "Cá nhân",
     "search_address": "Tìm kiếm địa điểm"
   },
@@ -15,5 +15,7 @@
   "average": "Trung bình",
   "high": "Cao",
   "low": "Thấp",
-  "start": "Bắt đầu"
+  "start": "Bắt đầu",
+  "continue": "Tiếp tục",
+  "hint": "Gợi ý"
 }

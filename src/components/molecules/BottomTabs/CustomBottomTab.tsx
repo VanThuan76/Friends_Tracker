@@ -11,6 +11,7 @@ import { interpolatePath } from 'react-native-redash';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 import usePath from '@hooks/usePath';
+import { useAppSelector } from '@/hooks/useRedux';
 
 import { SCREEN_WIDTH } from '@shared/constants/screen';
 import { getPathXCenter } from '@shared/utils/path';
@@ -25,13 +26,13 @@ export const CustomBottomTab: FC<BottomTabBarProps> = ({
     descriptors,
     navigation,
 }) => {
+    const isTabBarOpen = useAppSelector(state => state.tabBarOpen)
     const { containerPath, curvedPaths, tHeight } = usePath();
     const circleXCoordinate = useSharedValue(0);
     const progress = useSharedValue(1);
     const handleMoveCircle = (currentPath: string) => {
         circleXCoordinate.value = getPathXCenter(currentPath);
     };
-
 
     const animatedProps = useAnimatedProps(() => {
         const currentPath = interpolatePath(
@@ -50,10 +51,14 @@ export const CustomBottomTab: FC<BottomTabBarProps> = ({
         progress.value = withTiming(index);
     };
 
+    if (!isTabBarOpen) {
+        return null;
+    }
+
     return (
         <View style={styles.tabBarContainer}>
             <Svg width={SCREEN_WIDTH} height={tHeight} style={styles.shadowMd}>
-                <AnimatedPath fill={'white'} animatedProps={animatedProps} />
+                <AnimatedPath fill='white' animatedProps={animatedProps} />
             </Svg>
             <AnimatedCircle circleX={circleXCoordinate} />
             <View
@@ -81,7 +86,9 @@ export const CustomBottomTab: FC<BottomTabBarProps> = ({
         </View>
     );
 };
+
 export default CustomBottomTab;
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,

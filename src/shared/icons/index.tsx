@@ -9,6 +9,10 @@ import IconShare from '@shared/icons/figma/navigation/extends/icon_share.svg';
 import IconArrowRight from '@shared/icons/figma/icon_arrow_right.svg';
 import IconExpandBox from '@shared/icons/figma/icon_expand_box.svg';
 import IconUserDefault from '@shared/icons/figma/icon_user_default.svg';
+import IconSetting from '@shared/icons/figma/icon_setting.svg';
+import IconAward from '@shared/icons/figma/icon_award.svg';
+import IconUserSolid from '@shared/icons/figma/icon_user_solid.svg';
+
 
 const Images = {
     // Common
@@ -22,7 +26,11 @@ const Images = {
     // Extends
     iconHistory: <IconHistory width={20} height={20} />,
     iconCar: <IconCar width={20} height={20} />,
-    iconShare: <IconShare width={20} height={20} />
+    iconShare: <IconShare width={20} height={20} />,
+    // Profile Navigator
+    iconUserSolid: <IconUserSolid width={24} height={24} color="#000" />,
+    iconSetting: <IconSetting width={24} height={24} color="#000" />,
+    iconAward: <IconAward width={24} height={24} color="#000" />,
 };
 
 export default Images;
